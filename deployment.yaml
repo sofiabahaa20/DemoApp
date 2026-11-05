@@ -5,6 +5,8 @@ metadata:
   namespace: ivolve
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: demoapp
@@ -31,4 +33,3 @@ spec:
             limits:
               cpu: 500m
               memory: 768Mi
-
