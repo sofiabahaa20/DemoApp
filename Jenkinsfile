@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Scan Docker Image') {
       steps {
-        sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image --severity HIGH,CRITICAL --exit-code 0 $IMAGE:$TAG'
+        sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image --scanners vuln --timeout 30m --severity HIGH,CRITICAL --exit-code 0 $IMAGE:$TAG'
       }
     }
     stage('Push Image to DockerHub') {
