@@ -1,4 +1,3 @@
-
 @Library('shared-lib') _
 
 pipeline {
@@ -7,7 +6,6 @@ pipeline {
     environment {
         IMAGE = 'sophiabahaaboshra/demoapp'
         TAG = "${BUILD_NUMBER}"
-        K8S_SERVER = 'https://192.168.198.137:6443'
     }
 
     stages {
@@ -27,13 +25,13 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Update Manifest (GitOps)') {
             steps {
                 DeployOnK8s(
                     image: env.IMAGE,
                     tag: env.TAG,
-                    server: env.K8S_SERVER,
-                    tokenId: 'k8s-token'
+                    repo: 'github.com/sofiabahaa20/DemoApp.git',
+                    gitCredentialsId: 'github-creds'
                 )
             }
         }
