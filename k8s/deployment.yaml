@@ -23,7 +23,7 @@ spec:
           effect: NoSchedule
       containers:
         - name: demoapp
-          image: sophiabahaaboshra/demoapp:11
+          image: sophiabahaaboshra/demoapp:14
           ports:
             - containerPort: 8080
           resources:
